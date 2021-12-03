@@ -1,0 +1,54 @@
+name: centrifuge
+description: Classifier for metagenomic sequences.
+keywords:
+  - centrifuge
+  - classifier
+tools:
+  - centrifuge:
+      description: Classifier for metagenomic sequences.
+      homepage: "http://www.ccb.jhu.edu/software/centrifuge"
+      documentation: "https://ccb.jhu.edu/software/centrifuge/manual.shtml"
+      tool_dev_url: "https://github.com/DaehwanKimLab/centrifuge"
+      doi: "10.1101/gr.210641.116"
+      licence: ['GPL v3']
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - reads:
+      type: file
+      description: List of input FastQ files of size 1 and 2 for single-end and paired-end data
+      pattern: "*.{fastq.gz}"
+  - db:
+      type: file
+      description: centrifuge index file
+      pattern: "*.{cf}"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+  - results_for_krona:
+      type: file
+      description: centrifuge results file for krona
+      pattern: "*.{results.krona}"
+  - report:
+      type: file
+      description: centrifuge report file
+      pattern: "*.{report.txt}"
+  - kreport:
+      type: file
+      description: centrifuge kreport file
+      pattern: "*.{kreport.txt}"
+
+authors:
+  - "@kaehwan"
